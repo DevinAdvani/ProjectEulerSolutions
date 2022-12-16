@@ -8,5 +8,6 @@ list = [E(1)]
 for i in range(2,9999999):
     if E(i) < list[-1]:
         list.append(i)
+        print(i)
 
 print(list)
