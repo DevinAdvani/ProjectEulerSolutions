@@ -1,16 +1,5 @@
-def Blue(x):
-    return -((2*x -1)/2) + (x**2 - x + ((2*x -1)/2)**2)**0.5
-
-B = 707107
-
-print((B + Blue(B)))
-#just use algebra x is greater than 707107
-
+n = 1
 while True:
-    B += 1
-    if (B + Blue(B))%1 == 0:
-        print(B)
-        break
-
-#331255 if
-#need to not fuck up the algebra and find the minimum q and then justiterate from there
+    if float((2*n*n - 2*n + 1)**0.5).is_integer():
+        print(n,(2*n*n - 2*n + 1)**0.5)
+    n += 1
