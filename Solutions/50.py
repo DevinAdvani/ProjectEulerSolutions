@@ -1,35 +1,17 @@
-def Sieve(n):
-    """This function calculates all prime numbers up to a given limit(n)"""
+def primes_sieve2(limit):
+    a = [True] * limit                          # Initialize the primality list
+    a[0] = a[1] = False
 
-    #Defining the inintial list, all equal to True
-    primes = [True for i in range(n+1)]
-    primes [0] = primes [1] = False
+    for (i, isprime) in enumerate(a):
+        if isprime:
+            yield i
+            for n in range(i*i, limit, i):     # Mark factors non-prime
+                a[n] = False
+              
+    return a
 
-    #The starting number
-    p = 2
+primes = list(primes_sieve2(100))
 
-    #Running a loop to check all numbers below the square root of the given number
-    while p ** 2 < n:
-        #Check to see if it is equal to True (if the number is prime or not)
-        if primes[p]:
-            #If it was a prime number, kill every other multiple of it
-            for number in range(p*2, n+1, p):
-                primes[number] = False
-
-        #Increment the starting number by one to keep the loop working
-        p += 1
-
-    prime_numbers = [i for i in range (n+1) if primes[i]==True]
-    #If you want to see the list of prime numbers in the output
-    #return prime_numbers
-
-    #If you want to see how many prime numbers are there in a given range
-    return prime_numbers
-
-list = Sieve(1000000)
-
-for length in range(2,10):
-    for position in range(0,len(list)-length):
-        print(position)
-        if sum(list[position:position+length]) in list:
-            print(sum(list[position:position+length]))
+for i in range(0,len(primes)):
+    for j in range(i+1,len(primes)):
+        

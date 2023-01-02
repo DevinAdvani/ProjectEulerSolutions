@@ -11,7 +11,3 @@ def primes_sieve2(limit):
     return a
     
  
-n = list(primes_sieve2(1000000))
-print(n[-1])                
-
-#print(primes_sieve2(100))

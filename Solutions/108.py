@@ -40,12 +40,17 @@ def primes_sieve2(limit):
 
 primes = list(primes_sieve2(1000000))
 
+n=60
+print(n,f(n)/n)
 
+'''
 int = 1
 maxsol = 0
-while maxsol < 1000:
+while maxsol < 100:
     int += 1
     sol = f(int)
+    #print(int,sol,sol/int)
     if sol > maxsol:
         maxsol = sol 
-        print(int,maxsol)
+        print(int,maxsol,sol/int)
+'''
