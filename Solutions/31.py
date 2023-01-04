@@ -1,12 +1,19 @@
-count = 0
 
-for one in range(0,201):
-    for two in range(0,101):
-        for five in range(0,41):
-            for ten in range(0,21):
-                for twenty in range(0,11):
-                    for pound in range(0,3):
-                            if 100 == one*1 + two*2 + five*5 + ten*10 + twenty*20 + pound*100:
-                                count += 1
-                                print(one,two,count)
-#add one as removed 2 pound
+ways = 0
+for i in range(0,2):
+    recurrence1 = int((200-200*i)/100)+1
+    for j in range(0,recurrence1):
+        recurrence2 = int((200-200*i-100*j)/50)+1
+        for k in range(0,recurrence2):
+            recurrence3 = int((200-200*i-100*j-50*k)/20)+1
+            for l in range(0,recurrence3):
+                recurrence4 = int((200-200*i-100*j-50*k-20*l)/10)+1
+                for m in range(0,recurrence4):
+                    recurrence5 = int((200-200*i-100*j-50*k-20*l-10*m)/5)+1
+                    for n in range(0,recurrence5):
+                        recurrence6 = int((200-200*i-100*j-50*k-20*l-10*m-5*n)/2)+1
+                        for o in range(0,recurrence6):
+                            ways += 1
+                            print(ways,i,j,k,l,m,n,o)
+                            
+

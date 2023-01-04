@@ -1,25 +1,20 @@
-def PG(x):#Pentagonal Generator
-    return x*(3*x - 1)*0.5
+# IDK still quite confused
 
-def PC(x):#Pentagonal Checker
-    y = (1/6 + ((1/36)+(2/3)*x)**0.5)
-    if y == int(y):
+def PG(x):
+    return int(x * (3*x -1)/2)
+
+def PC(x):
+    if (24*x + 1)**0.5 % 1 == 0:
         return True
-    else:
-        return False
+    return False
 
-D = 100000000
-
-k = 100000
-
-for i in range(1,k):
-    print(i)
-    print(D)
-    for j in range(i+1,k):#i is less than j
-        if PC(PG(i)+PG(j)):
-            #if PC(PG(j)-PG(i)):
-            #if PC(PG(j)-PG(i)) < D:
-                D = PC(PG(j)-PG(i))
-                if D == True:
-                    break
-print(D)
+Pentagons = []
+for i in range(1,10000):
+    Pentagons.append(PG(i))
+    
+for i in range(0,len(Pentagons)-1):
+    for j in range(i+1,len(Pentagons)):
+        if PC(Pentagons[i]+Pentagons[j]):
+            if PC(Pentagons[j]-Pentagons[i]):
+                print(i,j,Pentagons[i],Pentagons[j],Pentagons[j]-Pentagons[i])
+                
