@@ -1,16 +1,58 @@
-list = []
-for i in range(1,1000000):
-    list.append(i)
+import collections 
+import itertools
+remaining = []
+for i in range(2,1000000):
+    remaining.append(i)
 
-def f(x):
-    l = []
-    for i in range(1,round(x/2)+1):
-        if x%i == 0:
-            l.append(i)
-    return sum(l)
+def prime_factors(n):
+    i = 2
+    while i * i <= n:
+        if n % i == 0:
+            n /= i
+            yield i
+        else:
+            i += 1
 
-print(f(1000000))
+    if n > 1:
+        yield n
 
-#start at one and find the chain
-#remove chain from overall list and store lowest number
-#iterate through
+def get_divisors(n):
+    pf = prime_factors(n)
+
+    pf_with_multiplicity = collections.Counter(pf)
+
+    powers = [
+        [factor ** i for i in range(count + 1)]
+        for factor, count in pf_with_multiplicity.items()
+    ]
+
+    for prime_power_combo in itertools.product(*powers):
+        yield prod(prime_power_combo)
+
+def prod(iterable):
+    result = 1
+    for i in iterable:
+        result *= i
+    return result
+    
+def trans(n):
+    return sum(list(get_divisors(n)))-n
+done = []
+def chain(n):
+    chain = [n]
+    done.append(n)
+    while True:
+        m = trans(chain[-1])
+        if m in chain or m > 1000000 or m in done:
+            break
+        done.append(m)
+        chain.append(m)
+    return chain
+
+
+for i in range(2,1000000):
+    if i in remaining:
+        print(chain(i))
+
+        
+        
